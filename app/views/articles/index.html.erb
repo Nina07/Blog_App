@@ -1,11 +1,15 @@
 <h3>List of all the articles !</h3>
-<% @articles.each do |article| %>
-  <strong><%= article.title + '~' %></strong>
-  <strong><%= article.text %></strong><br>
-  <%= link_to "Edit Article", edit_article_path(article) %><br>
-  <%= link_to "Show Article", article_path(article) %><br>
-  <%= link_to "Destroy", article_path(article), method: :delete, data: { confirm: 'Are you sure?'} %><br>
-<% end %>
-<br>
-<%= link_to "New Article", new_article_path %><br>
-<%= link_to "welcome", controller: 'welcome' %>
+<table border = 1>
+  <% @articles.each do |article| %>
+  <tr>
+    <td><strong><%= article.title %></strong></td>
+    <td><strong><%= article.text %></strong><br></td>
+    <td><%= link_to "Edit Article", edit_article_path(article) %></td>
+    <td><%= link_to "Show Article", article_path(article) %></td>
+    <td><%= link_to "Destroy", article_path(article), method: :delete, data: { confirm: 'Are you sure?'} %></td>
+  </tr>
+  <% end %>
+</table>
+  <br>
+  <%= link_to "New Article", new_article_path %><br>
+  <%= link_to "welcome", controller: 'welcome' %>

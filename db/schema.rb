@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160519144453) do
+ActiveRecord::Schema.define(version: 20160520104137) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -29,6 +29,25 @@ ActiveRecord::Schema.define(version: 20160519144453) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id", using: :btree
+
+  create_table "demo_extensions", force: :cascade do |t|
+    t.boolean "positive_responses"
+  end
+
+  create_table "demo_extensions_table_demos", id: false, force: :cascade do |t|
+    t.integer "demo_extension_id", limit: 4, null: false
+    t.integer "table_demo_id",     limit: 4, null: false
+  end
+
+  add_index "demo_extensions_table_demos", ["demo_extension_id"], name: "index_demo_extensions_table_demos_on_demo_extension_id", using: :btree
+  add_index "demo_extensions_table_demos", ["table_demo_id"], name: "index_demo_extensions_table_demos_on_table_demo_id", using: :btree
+
+  create_table "table_demos", force: :cascade do |t|
+    t.string "topic",                 limit: 255
+    t.time   "presentation_duration"
+    t.string "category",              limit: 255
+    t.string "rating",                limit: 255
+  end
 
   add_foreign_key "comments", "articles"
 end
